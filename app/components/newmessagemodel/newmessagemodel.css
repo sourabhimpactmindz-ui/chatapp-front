@@ -1,0 +1,312 @@
+/* ---------- Overlay ---------- */
+.nm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.35);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 200;
+  animation: nm-fade-in 0.15s ease;
+}
+
+@keyframes nm-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ---------- Modal card ---------- */
+.nm-modal {
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 28px 28px 24px;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.22);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #0f172a;
+  animation: nm-pop-in 0.18s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes nm-pop-in {
+  from { opacity: 0; transform: translateY(8px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.nm-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 6px;
+  letter-spacing: -0.01em;
+}
+
+.nm-subtitle {
+  font-size: 13.5px;
+  color: #64748b;
+  margin: 0 0 20px;
+  line-height: 1.5;
+}
+
+/* ---------- Labels ---------- */
+.nm-label {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 8px;
+}
+
+/* ---------- Recipient input ---------- */
+.nm-input-wrap {
+  position: relative;
+  margin-bottom: 14px;
+}
+
+.nm-input-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  font-size: 14px;
+  font-weight: 600;
+  pointer-events: none;
+}
+
+.nm-input {
+  width: 100%;
+  box-sizing: border-box;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 11px 14px 11px 34px;
+  font-size: 13.5px;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.nm-input::placeholder {
+  color: #94a3b8;
+}
+
+.nm-input:focus {
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 3px #ede9fe;
+}
+
+/* ---------- Suggestion chips ---------- */
+.nm-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.nm-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  border-radius: 999px;
+  padding: 5px 12px 5px 5px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #334155;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.nm-chip:hover {
+  border-color: #ddd6fe;
+  background: #f5f3ff;
+}
+
+.nm-chip-avatar {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  flex-shrink: 0;
+}
+
+/* ---------- Message field ---------- */
+.nm-message-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.nm-message-head .nm-label {
+  margin-bottom: 0;
+}
+
+.nm-hint {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+.nm-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 96px;
+  resize: vertical;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 13.5px;
+  font-family: inherit;
+  outline: none;
+  line-height: 1.5;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.nm-textarea::placeholder {
+  color: #94a3b8;
+}
+
+.nm-textarea:focus {
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 3px #ede9fe;
+}
+
+/* ---------- Toolbar ---------- */
+.nm-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 2px 18px;
+}
+
+.nm-toolbar-tools {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.nm-tool-btn {
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: transparent;
+  border-radius: 7px;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.nm-tool-btn:hover {
+  background: #f1f5f9;
+  color: #1e293b;
+}
+
+.nm-tool-glyph {
+  font-size: 13.5px;
+  font-weight: 700;
+}
+
+.nm-tool-glyph--italic {
+  font-style: italic;
+  font-weight: 600;
+}
+
+.nm-tool-divider {
+  width: 1px;
+  height: 16px;
+  background: #e2e8f0;
+  margin: 0 6px;
+}
+
+.nm-drafts {
+  border: none;
+  background: transparent;
+  color: #8b5cf6;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 6px;
+}
+
+.nm-drafts:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Actions ---------- */
+.nm-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.nm-send-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: opacity 0.15s ease, transform 0.1s ease;
+}
+
+.nm-send-btn:hover:not(:disabled) {
+  opacity: 0.92;
+}
+
+.nm-send-btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.nm-send-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.nm-cancel-btn {
+  flex: 1;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #334155;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.nm-cancel-btn:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 480px) {
+  .nm-modal {
+    padding: 22px 20px 18px;
+    border-radius: 16px;
+  }
+
+  .nm-title {
+    font-size: 19px;
+  }
+
+  .nm-actions {
+    flex-direction: column-reverse;
+  }
+}

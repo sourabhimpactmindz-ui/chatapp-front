@@ -1,0 +1,170 @@
+:root {
+  --color-bg: #f2f3fb;
+  --color-surface: #ffffff;
+  --color-sidebar: #ffffff;
+  --color-border: #eaeaf3;
+  --color-text: #1f2130;
+  --color-text-muted: #8a8ca3;
+  --color-text-faint: #b3b4c6;
+  --color-primary: #6c5ce7;
+  --color-primary-dark: #5b4bd6;
+  --color-primary-light: #efecfd;
+  --color-bubble-them: #f4f4fa;
+  --color-bubble-me: #6c5ce7;
+  --color-online: #35d488;
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+  --shadow-app: 0 30px 80px rgba(35, 30, 80, 0.18);
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overscroll-behavior: none;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.app-shell {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(0px, 3vw, 32px);
+}
+
+.app-window {
+  width: 100%;
+  max-width: 1280px;
+  height: 760px;
+  max-height: calc(100vh - 32px);
+  max-height: calc(100dvh - 32px);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-app);
+  display: flex;
+  overflow: hidden;
+}
+
+.app-window--stacked {
+  flex-direction: column;
+}
+
+.app-window__row {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  display: flex;
+  overflow: hidden;
+}
+
+.scrollbar-thin {
+  scrollbar-width: thin;
+}
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #dedfef;
+  border-radius: 10px;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1200px) {
+  .app-window {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .app-shell {
+    padding: 0;
+  }
+  .app-window {
+    height: 100vh;
+    height: 100dvh;
+    max-height: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
+/* Phone: stack sidebar and chat, and show only one panel at a time
+   (master-detail pattern) so neither panel fights the other for height. */
+@media (max-width: 640px) {
+  .app-window {
+    flex-direction: column;
+  }
+
+  .app-window__row {
+    flex-direction: column;
+  }
+
+  .app-window__row[data-has-selection="false"] .dm-chat,
+  .app-window__row[data-has-selection="false"] .dm-empty {
+    display: none;
+  }
+
+  .app-window__row[data-has-selection="true"] .dm-sidebar {
+    display: none;
+  }
+
+  .dm-sidebar,
+  .dm-chat,
+  .dm-empty {
+    width: 100% !important;
+    flex: 1 1 auto;
+  }
+}
+
+@media (max-width: 380px) {
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+  }
+}
+
+@supports (padding: env(safe-area-inset-bottom)) {
+  @media (max-width: 900px) {
+    .app-window {
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
