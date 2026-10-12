@@ -29,7 +29,7 @@ export default function SignupPage() {
       toast.success("SignIn successfully")
       localStorage.setItem("accessToken" , res.accessToken)
       localStorage.setItem("refreshToken", res.refreshToken);
-      router.push('/home')
+      router.push('/login')
     }
         }catch(error){
           console.log(error)

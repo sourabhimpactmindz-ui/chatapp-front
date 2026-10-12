@@ -18,7 +18,17 @@ export const MessageApi = baseApi.injectEndpoints({
             }),
         }),
 
+        Sendmessage :builder.mutation({
+            query : ({receiverId , text}) => ({
+                url : `/send/${receiverId}`,
+                method : "POST",
+                body : {
+                    text : text,
+                },
+            }),
+        }),
+
     })
 })
 
-export const {useCreateConverMutation , useAllMessageQuery} = MessageApi
+export const {useCreateConverMutation , useAllMessageQuery , useSendmessageMutation} = MessageApi

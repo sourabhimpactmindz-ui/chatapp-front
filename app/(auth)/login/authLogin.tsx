@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation';
 import { useLoginMutation } from '@/app/features/AuthApi';
 import { toast } from 'sonner'
 import ButtonLoader from '@/app/components/button/button';
+import { connectSocket, socket } from '@/app/services/socket';
 
 export default function AuthLogin() {
   const router = useRouter()
@@ -31,7 +32,9 @@ export default function AuthLogin() {
     // localStorage.setItem('accessToken' , res.accessToken);
     // localStorage.setItem("refreshToken", res.refreshToken);
     if(res?.status){
+      connectSocket(res.userid);
       toast.success("login successfully")
+      
       // localStorage.setItem("accessToken" , res.accessToken)
       // localStorage.setItem("refreshToken", res.refreshToken);
       router.push('/dashboard')
