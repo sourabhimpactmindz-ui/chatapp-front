@@ -215,6 +215,40 @@
   }
 }
 
+.app-sidebar__nav-btn {
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+.dm-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.dm-modal {
+  background: #fff;
+  color: #000;
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 80vh;
+  overflow-y: auto;
+  min-width: 300px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
 /* Landscape phones: shrink header offset, sidebar sits full height */
 @media (max-width: 900px) and (orientation: landscape) and (max-height: 500px) {
   .app-sidebar {

@@ -2,33 +2,34 @@ import { baseApi } from "@/app/services/baseApi";
 
 
 export const MessageApi = baseApi.injectEndpoints({
-    endpoints:(builder) => ({
-        createConver:builder.mutation({
-            query:(data) => ({
-                url:"/New-message",
+    endpoints: (builder) => ({
+        createConver: builder.mutation({
+            query: (data) => ({
+                url: "/New-message",
                 method: "POST",
                 body: data,
             }),
+            invalidatesTags: ["Messages"]
         }),
 
-        AllMessage:builder.query({
-            query:(conversationId) => ({
-                url:`/messages/${conversationId}`,
+        AllMessage: builder.query({
+            query: (conversationId) => ({
+                url: `/messages/${conversationId}`,
                 method: "GET"
             }),
+            providesTags: ["Messages"]
         }),
 
-        Sendmessage :builder.mutation({
-            query : ({receiverId , text}) => ({
-                url : `/send/${receiverId}`,
-                method : "POST",
-                body : {
-                    text : text,
-                },
+        sendmessage: builder.mutation({
+            query: (body) => ({
+                url: "/send",
+                method: "POST",
+                body,
             }),
+            invalidatesTags: ["Messages", "Conversations"],
         }),
 
     })
 })
 
-export const {useCreateConverMutation , useAllMessageQuery , useSendmessageMutation} = MessageApi
+export const { useCreateConverMutation, useAllMessageQuery, useSendmessageMutation } = MessageApi

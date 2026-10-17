@@ -106,8 +106,8 @@ useEffect(() => {
   return (
     <header className="top-nav">
       <Link href="/messages" className="top-nav__brand">
-        <span className="top-nav__logo">N</span>
-        <span className="top-nav__title">Nexus Chat</span>
+        <span className="top-nav__logo">CW</span>
+        <span className="top-nav__title">Chat Wave</span>
       </Link>
 
       <nav className="top-nav__links">

@@ -6,17 +6,17 @@ import { usePathname } from "next/navigation";
 import "./sidebar.css";
 import NewMessageModal from "../newmessagemodel/newmessagemodel";
 import ButtonLoader from "../button/button";
+import { CreateGroupModal } from "../createGroup/createGroup";
 
 const navItems = [
   { key: "home", label: "Home", href: "/messages", icon: "home" },
   { key: "dm", label: "Direct Messages", href: "/directmessage", icon: "chat" },
-  { key: "groups", label: "Groups", href: "/messages", icon: "groups" },
+  { key: "groups", label: "Groups", href: "#", icon: "groups" },
   { key: "files", label: "Files", href: "/messages", icon: "files" },
   { key: "settings", label: "Settings", href: "/messages", icon: "settings" },
 ];
 
-
-function Icon({ name }) {
+function Icon({ name }: { name: string }) {
   switch (name) {
     case "home":
       return (
@@ -77,15 +77,14 @@ function CloseIcon() {
 export default function Sidebar() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const [isLoading, setisLoading] = useState(false);
-  const [showModel , setShow] = useState(false);
+  const [isLoading] = useState(false);
+  const [showModel, setShow] = useState(false);
+  const [showGroupModal, setShowGroupModal] = useState(false);
 
-  // Close the drawer whenever the route changes (e.g. user taps a nav link)
   useEffect(() => {
     setIsOpen(false);
   }, [pathname]);
 
-  // Lock body scroll while the mobile drawer is open
   useEffect(() => {
     document.body.classList.toggle("sidebar-open", isOpen);
     return () => document.body.classList.remove("sidebar-open");
@@ -93,7 +92,6 @@ export default function Sidebar() {
 
   return (
     <>
-      {/* Mobile-only hamburger toggle, fixed to top-left of the viewport */}
       <button
         type="button"
         className="app-sidebar__toggle"
@@ -104,33 +102,39 @@ export default function Sidebar() {
         {isOpen ? <CloseIcon /> : <MenuIcon />}
       </button>
 
-      {/* Dimmed backdrop, tap to close on mobile */}
       <div
         className={`app-sidebar-backdrop${isOpen ? " is-visible" : ""}`}
         onClick={() => setIsOpen(false)}
       />
 
       <aside className={`app-sidebar${isOpen ? " is-open" : ""}`}>
-        
-
-        <button className="app-sidebar__new-message"
-        onClick={() => setShow(true)}
-        disabled={isLoading}
-        >{isLoading ? (
-          <>
-          <ButtonLoader />
-          </>
-
-        ) : (
-          "New Message"
-        )}
+        <button
+          className="app-sidebar__new-message"
+          onClick={() => setShow(true)}
+          disabled={isLoading}
+        >
+          {isLoading ? <ButtonLoader /> : "New Message"}
           <span className="app-sidebar__plus">+</span>
-          {/* <span>New Message</span> */}
         </button>
 
         <nav className="app-sidebar__nav">
           {navItems.map((item) => {
-            const active = item.key === "dm" && pathname.startsWith("/messages");
+            const active = item.key === "dm" && pathname.startsWith("/directmessage");
+
+            if (item.key === "groups") {
+              return (
+                <button
+                  key={item.key}
+                  type="button"
+                  className="app-sidebar__nav-item app-sidebar__nav-btn"
+                  onClick={() => setShowGroupModal(true)}
+                >
+                  <Icon name={item.icon} />
+                  <span>{item.label}</span>
+                </button>
+              );
+            }
+
             return (
               <Link
                 key={item.key}
@@ -156,13 +160,13 @@ export default function Sidebar() {
       </aside>
 
       {showModel && (
-        <NewMessageModal 
-        open={showModel}
-        onClose={() => setShow(false)}
-        />
+        <NewMessageModal open={showModel} onClose={() => setShow(false)} />
       )}
 
-
+      <CreateGroupModal
+        open={showGroupModal}
+        onClose={() => setShowGroupModal(false)}
+      />
     </>
   );
 }

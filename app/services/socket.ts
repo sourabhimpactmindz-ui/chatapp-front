@@ -1,8 +1,8 @@
 import { io } from "socket.io-client";
 
-export const socket = io("http://localhost:3009", {
-    withCredentials: true,
-    autoConnect: false,
+export const socket = io("http://localhost:3005", {
+  withCredentials: true,
+  autoConnect: false,
 });
 
 export const  connectSocket = (userId) =>{

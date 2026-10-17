@@ -1,7 +1,6 @@
 import ReduxProvider from "@/app/store/provider";
 import "./globals.css";
-import "./nexus-token.css"; // ← naam check kar lein, file jo actually save ki hai wahi likhein
-
+import "./nexus-token.css";
 import { Toaster } from 'sonner'
 
 export default function RootLayout({
